@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  omnigres:
+    image: ghcr.io/omnigres/omnigres-slim:latest
+    environment:
+      POSTGRES_PASSWORD: omnigres
+      POSTGRES_USER: omnigres
+      POSTGRES_DB: omnigres
+    volumes:
+      - ./db/010_express.sql:/docker-entrypoint-initdb.d/010_express.sql
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+      - "5432:5432"
+      - "8080:8080"
